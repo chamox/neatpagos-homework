@@ -1,31 +1,32 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms'; // Asegúrate de importar FormsModule
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 import { LandingComponent } from './landing/landing.component';
 import { SigninComponent } from './signin/signin.component';
-import { GoogleSsoDirective } from './google-sso.directive';
+import { GoogleSsoDirective } from './auth/google-sso.directive';
+import { RequireAuthComponent } from './require-auth/require-auth.component';
+import { AuthComponent } from './auth/auth.component'; // Importar AuthComponent
 import { environment } from '../environments/environment';
-import { RequireAuthComponent } from './require-auth/require-auth.component'; // Asegúrate de tener un archivo de entorno con la configuración de Firebase
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     LandingComponent,
     SigninComponent,
     GoogleSsoDirective,
     RequireAuthComponent,
+    AuthComponent, // Asegúrate de declarar AuthComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig), // Proporciona la configuración de Firebase
-    AngularFireAuthModule, // Importa el módulo de autenticación de Firebase
+    AngularFireModule.initializeApp(environment.firebaseConfig), // Configuración de Firebase
+    AngularFireAuthModule, // Módulo de autenticación de Firebase
+    FormsModule, // Importar FormsModule para usar [(ngModel)]
   ],
   providers: [],
   bootstrap: [AppComponent],

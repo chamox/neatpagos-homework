@@ -1,0 +1,89 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: white;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 64px;
+  z-index: 1000;
+}
+
+/* Content wrapper */
+.content-wrapper {
+  padding-top: 64px;
+  width: 100%;
+}
+
+.navbar-brand .brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  align-items: center; /* Center align items vertically */
+  gap: 1rem;
+  height: 100%; /* Match navbar height */
+}
+
+.navbar-links li {
+  display: flex; /* Add flex to list items */
+  align-items: center; /* Center items vertically */
+  height: 100%; /* Match parent height */
+}
+
+/* Shared styles for links and buttons */
+.navbar-links a,
+.navbar-links button {
+  display: flex;
+  align-items: center;
+  height: 36px; /* Fixed height for all interactive elements */
+  padding: 0 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+/* Link specific styles */
+.navbar-links a {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+.navbar-links a:hover {
+  background-color: #1d4ed8;
+  color: #ffffff;
+}
+
+/* Button specific styles */
+.navbar-links button {
+  color: #ffffff;
+  background: #ff5a5f;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar-links button:hover {
+  background-color: #ff4a4a;
+}

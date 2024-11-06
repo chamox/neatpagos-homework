@@ -1,14 +1,23 @@
-<nav>
-  <ul>
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a routerLink="/" class="brand">NeatPagos</a>
+  </div>
+  <ul class="navbar-links">
     <li>
-      <a routerLink="/">Landing page</a>
+      <a routerLink="/">Inicio</a>
     </li>
-    <li>
-      <a routerLink="/signin">Signin page</a>
+    <li *ngIf="!isAuthenticated">
+      <a routerLink="/signin">Iniciar sesión</a>
     </li>
-    <li>
-      <a routerLink="/require-auth">Auth protected</a>
+    <li *ngIf="isAuthenticated">
+      <a routerLink="/require-auth">Área protegida</a>
+    </li>
+    <li *ngIf="isAuthenticated">
+      <button (click)="logout()">Cerrar sesión</button>
     </li>
   </ul>
 </nav>
-<router-outlet></router-outlet>
+
+<div class="content-wrapper">
+  <router-outlet></router-outlet>
+</div>
