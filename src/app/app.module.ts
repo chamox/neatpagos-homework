@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; // Asegúrate de importar FormsModule
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
@@ -27,6 +28,7 @@ import { environment } from '../environments/environment';
     AngularFireModule.initializeApp(environment.firebaseConfig), // Configuración de Firebase
     AngularFireAuthModule, // Módulo de autenticación de Firebase
     FormsModule, // Importar FormsModule para usar [(ngModel)]
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
