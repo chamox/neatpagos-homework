@@ -1,4 +1,3 @@
-// src/app/auth/auth.service.ts
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -15,12 +14,12 @@ export class AuthService {
 
   private readonly firebaseErrorMessages: { [key: string]: string } = {
     'auth/invalid-credential':
-      'Credenciales inválidas. Por favor, verifica tu email y contraseña.',
-    'auth/user-not-found': 'No existe una cuenta con este email.',
-    'auth/wrong-password': 'Contraseña incorrecta.',
-    'auth/email-already-in-use': 'Este email ya está registrado.',
-    'auth/weak-password': 'La contraseña debe tener al menos 6 caracteres.',
-    'auth/invalid-email': 'El formato del email es inválido.',
+      'Invalid credentials. Please check your email and password.',
+    'auth/user-not-found': 'No account found with this email.',
+    'auth/wrong-password': 'Incorrect password.',
+    'auth/email-already-in-use': 'This email is already registered.',
+    'auth/weak-password': 'The password must be at least 6 characters long.',
+    'auth/invalid-email': 'The email format is invalid.',
   };
 
   constructor(
@@ -49,7 +48,7 @@ export class AuthService {
     console.error('Auth error:', error);
     return (
       this.firebaseErrorMessages[error.code] ||
-      'Ha ocurrido un error durante la autenticación.'
+      'An error occurred during authentication.'
     );
   }
 
@@ -77,7 +76,7 @@ export class AuthService {
         this.router.navigate(['']);
         return { success: true };
       }
-      return { success: false, message: 'No se pudo iniciar sesión.' };
+      return { success: false, message: 'Login failed.' };
     } catch (error: any) {
       return { success: false, message: this.handleAuthError(error) };
     }
@@ -97,7 +96,7 @@ export class AuthService {
         this.router.navigate(['']);
         return { success: true };
       }
-      return { success: false, message: 'No se pudo completar el registro.' };
+      return { success: false, message: 'Registration failed.' };
     } catch (error: any) {
       return { success: false, message: this.handleAuthError(error) };
     }
@@ -124,7 +123,7 @@ export class AuthService {
       }
       return {
         success: false,
-        message: 'No se pudo iniciar sesión con Google.',
+        message: 'Google login failed.',
       };
     } catch (error: any) {
       return { success: false, message: this.handleAuthError(error) };

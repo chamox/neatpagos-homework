@@ -1,4 +1,3 @@
-// src/app/crypto/transaction-history/transaction-history.component.ts
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';

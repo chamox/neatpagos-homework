@@ -6,26 +6,22 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-// import { LandingComponent } from './landing/landing.component';
-// import { SigninComponent } from './signin/signin.component';
 import { GoogleSsoDirective } from './shared/directives/google-sso.directive';
 import { AuthComponent } from './auth/auth.component';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { CryptoListComponent } from './crypto/crypto-list.component';
 import { TradeComponent } from './crypto/trade/trade.component';
-import { TransactionHistoryComponent } from './crypto/transaction-history/transaction-history.component'; // Importar TransactionHistoryComponent
+import { TransactionHistoryComponent } from './crypto/transaction-history/transaction-history.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    // LandingComponent,
-    // SigninComponent,
     GoogleSsoDirective,
     AuthComponent,
     CryptoListComponent,
     TradeComponent,
-    TransactionHistoryComponent, // Declarar TransactionHistoryComponent
+    TransactionHistoryComponent,
   ],
   imports: [
     BrowserModule,

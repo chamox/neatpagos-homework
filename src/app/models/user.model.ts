@@ -1,4 +1,3 @@
-// src/app/models/user.model.ts
 export interface CryptoHolding {
   amount: number;
   avgBuyPrice: number;
@@ -10,6 +9,6 @@ export interface User {
   balance: number;
   createdAt: Date;
   crypto: {
-    [key: string]: CryptoHolding; // Permitir acceso dinámico
+    [key: string]: CryptoHolding;
   };
 }

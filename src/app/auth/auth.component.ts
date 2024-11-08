@@ -1,4 +1,3 @@
-// src/app/auth/auth.component.ts
 import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';

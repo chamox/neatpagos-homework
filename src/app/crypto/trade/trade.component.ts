@@ -1,4 +1,3 @@
-// src/app/crypto/trade/trade.component.ts
 import { Component, OnInit } from '@angular/core';
 import { TradeService } from './trade.service';
 import { AuthService } from '../../auth/auth.service';

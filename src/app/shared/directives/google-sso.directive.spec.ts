@@ -5,7 +5,8 @@ describe('GoogleSsoDirective', () => {
     const angularFireAuth = jasmine.createSpyObj('AngularFireAuth', [
       'authState',
     ]);
-    const directive = new GoogleSsoDirective(angularFireAuth);
+    const authService = jasmine.createSpyObj('AuthService', ['someMethod']);
+    const directive = new GoogleSsoDirective(angularFireAuth, authService);
     expect(directive).toBeTruthy();
   });
 });

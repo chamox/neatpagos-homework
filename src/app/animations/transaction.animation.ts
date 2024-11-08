@@ -1,4 +1,3 @@
-// src/app/crypto/animations/transaction.animation.ts
 import {
   trigger,
   state,

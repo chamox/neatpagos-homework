@@ -1,4 +1,3 @@
-// src/app/shared/directives/google-sso.directive.ts
 import { Directive, HostListener } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { GoogleAuthProvider } from '@firebase/auth';
