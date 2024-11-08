@@ -56,6 +56,17 @@ export class TradeService {
           };
         }
 
+        if (
+          request.type === 'sell' &&
+          (!userData.crypto[normalizedSymbol] ||
+            userData.crypto[normalizedSymbol].amount < request.amount)
+        ) {
+          return {
+            success: false,
+            message: 'Insufficient cryptocurrency holdings',
+          };
+        }
+
         const transaction = {
           id: this.firestore.createId(),
           timestamp: new Date(),

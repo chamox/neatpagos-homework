@@ -1,27 +1,50 @@
-# NeatpagosHomework
+# NeatPagos Homework
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.11.
+This project is a web application for managing cryptocurrency transactions. It includes features for user authentication, viewing a list of cryptocurrencies, trading, and viewing transaction history.
 
-## Development server
+## Table of Contents
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [Considerations](#considerations)
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/chamox/neatpagos-homework.git
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd neatpagos-homework
+   ```
+3. Install the dependencies:
+   ```sh
+   npm install
+   ```
 
-## Build
+## Usage
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Start the development server:
+   ```sh
+   npm start
+   ```
+2. Open your browser and navigate to `http://localhost:4200`.
 
-## Running unit tests
+## Features
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- **User Authentication**: Users can sign in and register using email and password or Google SSO.
+- **Cryptocurrency List**: View a list of available cryptocurrencies with their current prices and changes (refreshes automatically every 30 seconds).
+- **Trading**: Buy and sell cryptocurrencies.
+- **Transaction History**: View the history of all transactions made by the user.
 
-## Running end-to-end tests
+## Project Structure
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- `src/app/auth`: Contains components and services related to user authentication.
+- `src/app/crypto`: Contains components related to cryptocurrency features, including the list and transaction history.
+- `src/app/shared`: Contains shared directives and services.
 
-## Further help
+## Considerations
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+I tried to tackle most of the problem in 10 hours, please note that this is my first project from scratch in Angular.

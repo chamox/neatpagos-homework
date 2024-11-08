@@ -23,6 +23,7 @@
   <div class="crypto-grid" *ngIf="!loading && !error">
     <div class="crypto-card" *ngFor="let crypto of cryptoList">
       <h3>{{ crypto.symbol }}</h3>
+      <div class="details">{{ crypto.companyName }}</div>
       <!-- Price Information -->
       <div class="price-info">
         <span class="price">${{ crypto.lastSalePrice }}</span>
