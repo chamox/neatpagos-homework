@@ -4,20 +4,22 @@
   </div>
   <ul class="navbar-links">
     <li>
-      <a routerLink="/">Inicio</a>
+      <a routerLink="/">Home</a>
     </li>
     <li *ngIf="!isAuthenticated">
-      <a routerLink="/signin">Iniciar sesión</a>
+      <a routerLink="/signin">Login</a>
     </li>
     <li *ngIf="isAuthenticated">
-      <a routerLink="/require-auth">Área protegida</a>
+      <a routerLink="/trade">Trade</a>
+    </li>
+    <li *ngIf="isAuthenticated">
+      <a routerLink="/transaction-history">Transactions</a>
     </li>
     <li *ngIf="isAuthenticated">
       <button (click)="logout()">Cerrar sesión</button>
     </li>
   </ul>
 </nav>
-
 <div class="content-wrapper">
   <router-outlet></router-outlet>
 </div>

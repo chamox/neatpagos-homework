@@ -1,0 +1,65 @@
+<div class="crypto-container">
+  <!-- Portfolio Summary -->
+  <div class="portfolio-summary" *ngIf="userData">
+    <h2>Your Portfolio</h2>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <span class="label">USD Balance: </span>
+        <span class="value">${{ userData.balance | number : "1.2-2" }}</span>
+      </div>
+      <div class="summary-item">
+        <span class="label">Portfolio Value:</span>
+        <span class="value">${{ portfolioValue | number : "1.2-2" }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading">Loading crypto data...</div>
+
+  <!-- Error State -->
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+
+  <!-- Crypto List -->
+  <div class="crypto-grid" *ngIf="!loading && !error">
+    <div class="crypto-card" *ngFor="let crypto of cryptoList">
+      <h3>{{ crypto.symbol }}</h3>
+      <!-- Details -->
+      <div class="details">
+        <p>{{ crypto.companyName }}</p>
+      </div>
+
+      <!-- Price Information -->
+      <div class="price-info">
+        <span class="price">${{ crypto.lastSalePrice }}</span>
+        <span
+          class="change"
+          [class.up]="crypto.deltaIndicator === 'up'"
+          [class.down]="crypto.deltaIndicator === 'down'"
+        >
+          {{ crypto.netChange }} ({{ crypto.percentageChange }})
+        </span>
+      </div>
+
+      <!-- Holdings Information -->
+      <div class="holdings-info" *ngIf="userData">
+        <p>Your Holdings: {{ getUserHolding(crypto.symbol) }}</p>
+        <p>
+          Value: ${{
+            getCurrentPrice(crypto.symbol) * getUserHolding(crypto.symbol)
+              | number : "1.2-2"
+          }}
+        </p>
+        <p
+          class="profit-loss"
+          [class.profit]="getProfitLoss(crypto.symbol) > 0"
+          [class.loss]="getProfitLoss(crypto.symbol) < 0"
+        >
+          Profit/Loss: ${{ getProfitLoss(crypto.symbol) | number : "1.2-2" }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

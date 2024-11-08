@@ -1,0 +1,68 @@
+<!-- src/app/crypto/trade/trade.component.html -->
+<div class="trade-container">
+  <div class="trade-card">
+    <h2 class="trade-title">Trade Cryptocurrencies</h2>
+
+    <form
+      [formGroup]="tradeForm"
+      (ngSubmit)="executeTrade()"
+      class="trade-form"
+    >
+      <div class="form-group">
+        <label for="type">Type</label>
+        <select id="type" formControlName="type" class="form-control">
+          <option value="buy">Buy</option>
+          <option value="sell">Sell</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="symbol">Symbol</label>
+        <select id="symbol" formControlName="symbol" class="form-control">
+          <option value="" disabled>Select a cryptocurrency</option>
+          <option *ngFor="let crypto of cryptoList" [value]="crypto.symbol">
+            {{ crypto.symbol }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="amount">Amount</label>
+        <input
+          type="number"
+          id="amount"
+          formControlName="amount"
+          class="form-control"
+          placeholder="e.g., 1.5"
+          step="any"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input
+          type="number"
+          id="price"
+          formControlName="price"
+          class="form-control"
+          placeholder="e.g., 45000"
+          [disabled]="true"
+        />
+      </div>
+
+      <div class="trade-buttons">
+        <button
+          type="submit"
+          class="btn-primary"
+          [disabled]="loading || tradeForm.invalid"
+        >
+          Execute Trade
+        </button>
+      </div>
+    </form>
+
+    <div *ngIf="loading" class="loading">Processing trade...</div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+    <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+  </div>
+</div>

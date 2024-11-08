@@ -1,0 +1,31 @@
+<!-- src/app/crypto/transaction-history/transaction-history.component.html -->
+<div class="transaction-history-container">
+  <h2 class="transaction-history-title">Transaction History</h2>
+  <div *ngIf="transactions.length === 0" class="no-transactions">
+    No transactions found.
+  </div>
+  <div *ngIf="transactions.length > 0">
+    <table class="transaction-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Symbol</th>
+          <th>Amount</th>
+          <th>Price</th>
+          <th>Total</th>
+          <th>Timestamp</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of transactions">
+          <td>{{ transaction.type }}</td>
+          <td>{{ transaction.symbol }}</td>
+          <td>{{ transaction.amount }}</td>
+          <td>{{ transaction.price | number : "1.2-2" }}</td>
+          <td>{{ transaction.total | number : "1.2-2" }}</td>
+          <td>{{ transaction.timestamp | date : "short" }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

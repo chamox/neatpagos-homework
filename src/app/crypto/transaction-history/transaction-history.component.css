@@ -1,0 +1,50 @@
+/* src/app/crypto/transaction-history/transaction-history.component.css */
+.transaction-history-container {
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.transaction-history-title {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transaction-table th,
+.transaction-table td {
+  padding: 12px 15px;
+  border: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+.transaction-table th {
+  background-color: #f4f4f4;
+  color: #4a5568;
+  font-weight: 600;
+}
+
+.transaction-table tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.transaction-table tbody tr:hover {
+  background-color: #edf2f7;
+}
+
+.no-transactions {
+  text-align: center;
+  color: #4a5568;
+  font-size: 1rem;
+  margin-top: 1rem;
+}

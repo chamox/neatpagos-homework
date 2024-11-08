@@ -1,20 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SigninComponent } from './signin/signin.component';
-import { LandingComponent } from './landing/landing.component';
-import { RequireAuthComponent } from './require-auth/require-auth.component';
-import { AuthComponent } from './auth/auth.component'; // Importar AuthComponent
-import { authGuard } from './auth/auth.guard';
+// import { LandingComponent } from './landing/landing.component';
+import { AuthComponent } from './auth/auth.component';
+// import { authGuard } from './auth/auth.guard';
+import { CryptoListComponent } from './crypto/crypto-list.component';
+import { TradeComponent } from './crypto/trade/trade.component';
+import { TransactionHistoryComponent } from './crypto/transaction-history/transaction-history.component'; // Importar TransactionHistoryComponent
 
 const routes: Routes = [
-  { path: '', component: LandingComponent },
+  { path: '', component: CryptoListComponent },
   { path: 'signin', component: AuthComponent },
-  { path: 'auth', component: AuthComponent }, // Nueva ruta para el componente de autenticación
-  {
-    path: 'require-auth',
-    component: RequireAuthComponent,
-    canActivate: [authGuard],
-  },
+  { path: 'crypto', component: CryptoListComponent },
+  { path: 'trade', component: TradeComponent },
+  { path: 'transaction-history', component: TransactionHistoryComponent }, // Nueva ruta para TransactionHistoryComponent
 ];
 
 @NgModule({
