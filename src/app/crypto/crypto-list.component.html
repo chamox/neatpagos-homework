@@ -13,24 +13,16 @@
       </div>
     </div>
   </div>
-
   <!-- Loading State -->
   <div *ngIf="loading" class="loading">Loading crypto data...</div>
-
   <!-- Error State -->
   <div *ngIf="error" class="error">
     {{ error }}
   </div>
-
   <!-- Crypto List -->
   <div class="crypto-grid" *ngIf="!loading && !error">
     <div class="crypto-card" *ngFor="let crypto of cryptoList">
       <h3>{{ crypto.symbol }}</h3>
-      <!-- Details -->
-      <div class="details">
-        <p>{{ crypto.companyName }}</p>
-      </div>
-
       <!-- Price Information -->
       <div class="price-info">
         <span class="price">${{ crypto.lastSalePrice }}</span>
@@ -42,7 +34,6 @@
           {{ crypto.netChange }} ({{ crypto.percentageChange }})
         </span>
       </div>
-
       <!-- Holdings Information -->
       <div class="holdings-info" *ngIf="userData">
         <p>Your Holdings: {{ getUserHolding(crypto.symbol) }}</p>

@@ -28,7 +28,7 @@ export class TradeComponent implements OnInit {
     this.tradeForm = this.fb.group({
       type: ['buy', Validators.required],
       symbol: ['', Validators.required],
-      amount: [0, [Validators.required, Validators.min(0.00000001)]], // Permitir decimales mayores que 0
+      amount: [0, [Validators.required, Validators.min(0.00000001)]], // Allow decimals greater than 0
       price: [{ value: 0, disabled: true }, Validators.required],
     });
   }
@@ -36,7 +36,7 @@ export class TradeComponent implements OnInit {
   ngOnInit(): void {
     this.loadUserDataAndCrypto();
     this.tradeForm.get('symbol')?.valueChanges.subscribe((symbol) => {
-      this.updatePrice(symbol);
+      this.updatePrice(symbol.toLowerCase());
     });
   }
 
@@ -55,7 +55,9 @@ export class TradeComponent implements OnInit {
   }
 
   private updatePrice(symbol: string): void {
-    const crypto = this.cryptoList.find((c) => c.symbol === symbol);
+    const crypto = this.cryptoList.find(
+      (c) => c.symbol.toLowerCase() === symbol
+    );
     if (crypto) {
       const price = parseFloat(crypto.lastSalePrice.replace(/,/g, ''));
       this.tradeForm.get('price')?.setValue(price.toFixed(2));
@@ -72,7 +74,13 @@ export class TradeComponent implements OnInit {
 
     this.loading = true;
     this.tradeService
-      .executeTrade({ type, symbol, amount, price, userId })
+      .executeTrade({
+        type,
+        symbol: symbol.toLowerCase(),
+        amount,
+        price,
+        userId,
+      })
       .subscribe({
         next: (response) => {
           this.loading = false;

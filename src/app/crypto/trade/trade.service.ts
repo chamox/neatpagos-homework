@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
+import { Observable, of, firstValueFrom } from 'rxjs';
+import { delay, switchMap } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 interface TradeRequest {
@@ -32,16 +32,27 @@ export class TradeService {
   constructor(private firestore: AngularFirestore) {}
 
   executeTrade(request: TradeRequest): Observable<TradeResponse> {
-    // Simular 10% de rechazo
-    const willSucceed = Math.random() > 0.1;
+    return of(true).pipe(
+      delay(1000), // Simulate latency
+      switchMap(async () => {
+        const normalizedSymbol = request.symbol.toLowerCase();
+        const userRef = this.firestore.collection('users').doc(request.userId);
+        const userDoc = await firstValueFrom(userRef.get());
+        const userData = userDoc?.data() as any;
 
-    return of(willSucceed).pipe(
-      delay(1000), // Simular latencia
-      map((success) => {
-        if (!success) {
+        if (!userData) {
           return {
             success: false,
-            message: 'Transacción rechazada por el exchange',
+            message: 'User data not found',
+          };
+        }
+
+        const totalCost = request.amount * request.price;
+
+        if (request.type === 'buy' && userData.balance < totalCost) {
+          return {
+            success: false,
+            message: 'Insufficient funds',
           };
         }
 
@@ -49,48 +60,48 @@ export class TradeService {
           id: this.firestore.createId(),
           timestamp: new Date(),
           type: request.type,
-          symbol: request.symbol,
+          symbol: normalizedSymbol,
           amount: request.amount,
           price: request.price,
-          total: request.amount * request.price,
+          total: totalCost,
         };
 
         // Store transaction in Firestore
-        this.firestore
+        await this.firestore
           .collection('users')
           .doc(request.userId)
           .collection('transactions')
           .add(transaction);
 
         // Update user's crypto holdings
-        this.updateUserHoldings(request);
+        await this.updateUserHoldings(request, userData, normalizedSymbol);
 
         return {
           success: true,
-          message: 'Transacción completada exitosamente',
+          message: 'Transaction completed successfully',
           transaction,
         };
       })
     );
   }
 
-  private async updateUserHoldings(request: TradeRequest): Promise<void> {
+  private async updateUserHoldings(
+    request: TradeRequest,
+    userData: any,
+    normalizedSymbol: string
+  ): Promise<void> {
     const userRef = this.firestore.collection('users').doc(request.userId);
-    const userDoc = await userRef.get().toPromise();
-    const userData = userDoc?.data() as any;
-
-    if (!userData) return;
 
     const multiplier = request.type === 'buy' ? 1 : -1;
     const newAmount =
-      (userData.crypto[request.symbol]?.amount || 0) +
+      (userData.crypto[normalizedSymbol]?.amount || 0) +
       multiplier * request.amount;
     const newBalance =
       userData.balance - multiplier * request.amount * request.price;
 
     await userRef.update({
-      [`crypto.${request.symbol}.amount`]: newAmount,
-      [`crypto.${request.symbol}.avgBuyPrice`]: request.price,
+      [`crypto.${normalizedSymbol}.amount`]: newAmount,
+      [`crypto.${normalizedSymbol}.avgBuyPrice`]: request.price,
       balance: newBalance,
     });
   }
